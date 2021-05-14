@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 showLoading("#main-content");
 $ajaxUtils.sendGetRequest(
   allCategoriesUrl,
-  buildAndShowHomeHTML, // ***** <---- TODO: STEP 1: Substitute [...] ******
+  homeHtml, // ***** <---- TODO: STEP 1: Substitute [...] ******
   true); // Explicitly setting the flag to get JSON from server processed into an object literal
 });
 // *** finish **
@@ -92,14 +92,19 @@ $ajaxUtils.sendGetRequest(
 // Builds HTML for the home page based on categories array
 // returned from the server.
 function buildAndShowHomeHTML (categories) {
-
   // Load home snippet page
   $ajaxUtils.sendGetRequest(
     homeHtmlUrl,
     function (homeHtml) {
         var chosenCategoryShortName= 
           chooseRandomCategory (categories);
-            insertHtml ("#main-content", chosenCategoryShortName);
+      
+         },
+    false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
+}
+           
+      
+      //insertHtml ("#main-content", chosenCategoryShortName);
 
              // menuItemsTitleHtml =
     // insertProperty(menuItemsTitleHtml,
@@ -131,17 +136,12 @@ function buildAndShowHomeHTML (categories) {
       // of how to do that.
       // ....
 
-    },
-    false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
-}
+ 
 
 
-// Given array of category objects, returns a random category object.
+
 function chooseRandomCategory (categories) {
-  // Choose a random index into the array (from 0 inclusively until array length (exclusively))
   var randomArrayIndex = Math.floor(Math.random() * categories.length);
-
-  // return category object with that randomArrayIndex
   return categories[randomArrayIndex];
 }
 
