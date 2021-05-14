@@ -99,7 +99,7 @@ function buildAndShowHomeHTML (categories) {
     function (homeHtml) {
         var chosenCategoryShortName= 
           chooseRandomCategory (categories);
-            // insertHtml ("#main-content", chosenCategoryShortName);
+            insertHtml ("#main-content", chosenCategoryShortName);
 
              // menuItemsTitleHtml =
     // insertProperty(menuItemsTitleHtml,
