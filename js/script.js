@@ -93,11 +93,15 @@ $ajaxUtils.sendGetRequest(
 // returned from the server.
 function buildAndShowHomeHTML (categories) {
   // Load home snippet page
-  $ajaxUtils.sendGetRequest(
+ $ajaxUtils.sendGetRequest(
     homeHtmlUrl,
     function (homeHtml) {
-        var chosenCategoryShortName= 
-          chooseRandomCategory (categories);
+      // Retrieve single category snippet
+      $ajaxUtils.sendGetRequest(
+        homeHtml,
+          function (chooseRandomCategory){
+             $ajaxUtils.sendGetRequest(
+                categories);
       
          },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
